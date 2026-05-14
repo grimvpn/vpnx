@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grim VPN - Download</title>
+<link rel="icon" href="grimlogo.png" type="image/png">
+<style>
+@font-face {
+    font-family: 'Srift';
+    src: url('./Srift.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+html,body{
+height:100%;
+font-family:'Srift', Arial, sans-serif;
+color:white;
+overflow-x:hidden;
+user-select:none;
+}
+html, body {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-y: scroll !important;
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important;
+}
+body{
+background:url("fon.png") center/cover no-repeat fixed;
+}
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+z-index:-1;
+}
+.top-bar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:80px;
+background:rgba(0,0,0,0.95);
+backdrop-filter:blur(8px);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 40px;
+z-index:100;
+}
+.logo-box img{
+width:64px;
+height:64px;
+object-fit:contain;
+}
+.nav-links{
+display:flex;
+gap:45px;
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+}
+.top-bar a{
+color:white;
+text-decoration:none;
+font-size:16px;
+letter-spacing:1px;
+white-space:nowrap;
+}
+.top-bar a:hover,
+.top-bar a.active{
+color:#00c6ff;
+}
+.right-buttons{
+display:flex;
+gap:15px;
+align-items:center;
+}
+.connect-btn,
+.support-btn{
+padding:12px 34px;
+font-size:15px;
+border:2px solid #00c6ff;
+background:transparent;
+color:white;
+border-radius:40px;
+font-weight:bold;
+letter-spacing:1.5px;
+text-transform:uppercase;
+transition: all 0.3s ease;
+white-space:nowrap;
+}
+.hamburger{
+display:none;
+font-size:28px;
+color:white;
+cursor:pointer;
+z-index:101;
+}
+.mobile-menu{
+display:none;
+position:fixed;
+top:80px;
+left:0;
+width:100%;
+background:rgba(0,0,0,0.98);
+backdrop-filter:blur(12px);
+flex-direction:column;
+padding:20px 0;
+box-shadow:0 10px 30px rgba(0,0,0,0.7);
+z-index:99;
+}
+.mobile-menu.active{
+display:flex;
+}
+.mobile-menu a{
+color:white;
+text-decoration:none;
+font-size:18px;
+padding:16px 40px;
+}
+.mobile-menu a:hover,
+.mobile-menu a.active{
+background:rgba(0,198,255,0.2);
+color:#00c6ff;
+}
+.container{
+max-width:900px;
+margin:140px auto 80px auto;
+padding:20px;
+}
+.downloads{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+gap:25px;
+}
+.card{
+background:rgba(21,21,24,0.95);
+border-radius:16px;
+padding:25px 20px 20px;
+position:relative;
+overflow:hidden;
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 40px rgba(0,198,255,0.45);
+}
+.card-icon{
+position:absolute;
+top:18px;
+left:18px;
+width:52px;
+height:52px;
+}
+.card-icon img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+.card h3{
+margin-top:65px;
+margin-bottom:10px;
+font-size:1.35rem;
+}
+.card p{
+opacity:0.85;
+line-height:1.5;
+margin-bottom:20px;
+}
+.download-btn{
+display:inline-block;
+padding:12px 24px;
+background:linear-gradient(45deg,#00c6ff,#0072ff);
+color:white;
+font-weight:bold;
+border-radius:50px;
+cursor:pointer;
+transition:0.3s;
+text-decoration:none;
+}
+.download-btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px rgba(0,198,255,0.6);
+}
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.92);
+backdrop-filter:blur(12px);
+z-index:300;
+align-items:center;
+justify-content:center;
+}
+.modal-content{
+background:rgba(21,21,24,0.98);
+padding:25px 30px;
+border-radius:20px;
+max-width:380px;
+width:92%;
+text-align:center;
+position:relative;
+}
+.modal-content h3{
+margin-bottom:25px;
+font-size:1.45rem;
+}
+.sources{
+display:flex;
+flex-wrap:wrap;
+gap:14px;
+justify-content:center;
+}
+.source-btn{
+width:152px;
+height:62px;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+margin:0;
+transition:0.3s;
+}
+.source-btn:hover{
+transform:scale(1.08);
+}
+.source-btn img{
+max-width:100%;
+max-height:100%;
+object-fit:contain;
+}
+.close-modal{
+position:absolute;
+top:15px;
+right:20px;
+font-size:32px;
+cursor:pointer;
+color:#aaa;
+transition:0.3s;
+}
+.close-modal:hover{
+color:white;
+}
+
+.site-footer {
+    text-align: center;
+    padding: 40px 20px 100px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    margin-top: 80px;
+    line-height: 1.6;
+}
+.site-footer a {
+    color: #00c6ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+    margin-top: 12px;
+}
+.site-footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-icons{
+position:fixed;
+bottom:25px;
+right:25px;
+display:flex;
+gap:12px;
+z-index:10;
+}
+.footer-icons a{
+width:24px;
+height:24px;
+display:block;
+}
+.footer-icons img{
+width:100%;
+height:100%;
+object-fit:contain;
+opacity:0.7;
+transition:0.3s;
+}
+.footer-icons a:hover img{
+opacity:1;
+transform:scale(1.15);
+}
+
+@media(max-width: 768px){
+.top-bar{
+height:70px;
+padding:0 20px;
+}
+.nav-links,
+.right-buttons{
+display:none;
+}
+.hamburger{
+display:block;
+}
+.container{
+margin-top:110px;
+}
+.site-footer {
+    margin-top: 100px;
+    padding-bottom: 110px;
+}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+    <div class="logo-box">
+        <img src="grimlogo.png" alt="grim logo">
+    </div>
+ 
+    <div class="nav-links">
+        <a href="index">Home</a>
+        <a href="download" class="active">Download</a>
+    </div>
+    <div class="right-buttons">
+        <a href="https://t.me/grimvpnbot" target="_blank" class="connect-btn">Подключить</a>
+        <a href="https://t.me/GrimVpnSupportBot" target="_blank" class="support-btn">Support</a>
+    </div>
+    <div class="hamburger" id="hamburger">☰</div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index">Home</a>
+    <a href="download" class="active">Download</a>
+    <a href="https://t.me/grimvpnbot" target="_blank">Подключить</a>
+    <a href="https://t.me/GrimVpnSupportBot" target="_blank">Support</a>
+</div>
+
+<div class="container">
+    <div class="downloads">
+        <div class="card">
+            <div class="card-icon">
+                <img src="tools/happ.webp" alt="Happ">
+            </div>
+            <h3>Happ</h3>
+            <p>Инструмент для подключения к VPN</p>
+            <button class="download-btn" onclick="showSources(3)">СКАЧАТЬ</button>
+        </div>
+       
+        <div class="card">
+            <div class="card-icon">
+                <img src="tools/v2raytun.webp" alt="v2RayTun">
+            </div>
+            <h3>v2RayTun</h3>
+            <p>Инструмент для подключения к VPN</p>
+            <button class="download-btn" onclick="showSources(2)">СКАЧАТЬ</button>
+        </div>
+       
+        <div class="card">
+            <div class="card-icon">
+                <img src="tools/nekobox.webp" alt="NekoBox">
+            </div>
+            <h3>NekoBox</h3>
+            <p>Инструмент для подключения к VPN</p>
+            <button class="download-btn" onclick="showSources(1)">СКАЧАТЬ</button>
+        </div>
+        <div class="card">
+            <div class="card-icon">
+                <img src="tools/v2rayN.webp" alt="v2rayN">
+            </div>
+            <h3>v2rayN</h3>
+            <p>Desktop клиент для подключения к VPN</p>
+            <button class="download-btn" onclick="showSources(4)">СКАЧАТЬ</button>
+        </div>
+        <div class="card">
+            <div class="card-icon">
+                <img src="tools/hiddify.webp" alt="Hiddify">
+            </div>
+            <h3>Hiddify</h3>
+            <p>Инструмент для подключения к VPN</p>
+            <button class="download-btn" onclick="showSources(5)">СКАЧАТЬ</button>
+        </div>
+    </div>
+</div>
+
+<div class="site-footer">
+    © 2026 Grim VPN. Все права защищены.
+    <a href="privacy" target="_blank">Политика конфиденциальности</a>
+    <a href="useragreement" target="_blank">Пользовательское соглашение</a>
+</div>
+
+<div class="footer-icons">
+    <a href="https://t.me/grimvpn" target="_blank"><img src="icons/telegram.svg" alt="Telegram"></a>
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="hideModal()">×</span>
+        <h3>ВЫБЕРИТЕ ИСТОЧНИК СКАЧИВАНИЯ</h3>
+        <div class="sources" id="sources-container"></div>
+    </div>
+</div>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', (e) => {
+    e.stopImmediatePropagation();
+    mobileMenu.classList.toggle('active');
+    hamburger.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+document.addEventListener('click', (e) => {
+    if (mobileMenu.classList.contains('active') && 
+        !mobileMenu.contains(e.target) && 
+        !hamburger.contains(e.target)) {
+        
+        mobileMenu.classList.remove('active');
+        hamburger.textContent = '☰';
+    }
+});
+
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        hamburger.textContent = '☰';
+    });
+});
+
+document.addEventListener('contextmenu', function(e){
+  if(e.target.tagName === 'IMG') e.preventDefault();
+});
+document.querySelectorAll('img').forEach(img => {
+  img.setAttribute('draggable','false');
+  img.addEventListener('dragstart', e => e.preventDefault());
+});
+
+const modal = document.getElementById('modal');
+const sourcesContainer = document.getElementById('sources-container');
+const cardSources = {
+    1: [ /* NekoBox */
+        {icon: "icons/github.webp", link: "https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"},
+        {icon: "icons/direct.webp", link: ""},
+        {icon: "icons/playmarket.webp", link: ""},
+        {icon: "icons/appstore.webp", link: ""},
+        {icon: "icons/rustore.webp", link: ""},
+        {icon: "icons/appgallery.webp", link: ""}
+    ],
+    2: [ /* v2RayTun */
+        {icon: "icons/github.webp", link: ""},
+        {icon: "icons/direct.webp", link: ""},
+        {icon: "icons/playmarket.webp", link: "https://play.google.com/store/apps/details?id=com.v2raytun.android"},
+        {icon: "icons/appstore.webp", link: "https://apps.apple.com/us/app/v2raytun/id6476628951"},
+        {icon: "icons/rustore.webp", link: ""},
+        {icon: "icons/appgallery.webp", link: ""}
+    ],
+    3: [ /* Happ */
+        {icon: "icons/github.webp", link: "https://github.com/Happ-proxy"},
+        {icon: "icons/direct.webp", link: "https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ.apk"},
+        {icon: "icons/playmarket.webp", link: "https://play.google.com/store/apps/details?id=com.happproxy"},
+        {icon: "icons/appstore.webp", link: "https://apps.apple.com/us/app/happ-proxy-utility/id6504287215?platform=iphone"},
+        {icon: "icons/rustore.webp", link: ""},
+        {icon: "icons/appgallery.webp", link: ""}
+    ],
+    4: [ /* v2rayN */
+        {icon: "icons/github.webp", link: "https://github.com/2dust/v2rayN/releases"},
+        {icon: "icons/direct.webp", link: ""},
+        {icon: "icons/playmarket.webp", link: ""},
+        {icon: "icons/appstore.webp", link: ""},
+        {icon: "icons/rustore.webp", link: ""},
+        {icon: "icons/appgallery.webp", link: ""}
+    ],
+    5: [ /* Hiddify */
+        {icon: "icons/github.webp", link: "https://github.com/hiddify/hiddify-app/releases"},
+        {icon: "icons/direct.webp", link: ""},
+        {icon: "icons/playmarket.webp", link: "https://play.google.com/store/apps/details?id=app.hiddify.com"},
+        {icon: "icons/appstore.webp", link: "https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532?platform=iphone"},
+        {icon: "icons/rustore.webp", link: ""},
+        {icon: "icons/appgallery.webp", link: ""}
+    ]
+};
+function showSources(cardId) {
+    sourcesContainer.innerHTML = '';
+    const sources = cardSources[cardId] || [];
+    sources.forEach(src => {
+        if (!src.link) return;
+        const btn = document.createElement('a');
+        btn.href = src.link;
+        btn.target = "_blank";
+        btn.className = "source-btn";
+        btn.innerHTML = `<img src="${src.icon}" alt="">`;
+        sourcesContainer.appendChild(btn);
+    });
+    modal.style.display = "flex";
+}
+function hideModal() {
+    modal.style.display = "none";
+}
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) hideModal();
+});
+</script>
+</body>
+</html>

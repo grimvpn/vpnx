@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Политика конфиденциальности | Grim VPN</title>
+<link rel="icon" href="grimlogo.png" type="image/png">
+<style>
+@font-face {
+    font-family: 'Srift';
+    src: url('./Srift.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+html,body{
+height:100%;
+font-family:'Srift', Arial, sans-serif;
+color:white;
+overflow-x:hidden;
+user-select:none;
+}
+html, body {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-y: scroll !important;
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important;
+}
+body{
+background:url("fon.png") center/cover no-repeat fixed;
+}
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+z-index:-1;
+}
+.top-bar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:80px;
+background:rgba(0,0,0,0.95);
+backdrop-filter:blur(8px);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 40px;
+z-index:100;
+}
+.logo-box img{
+width:64px;
+height:64px;
+object-fit:contain;
+}
+.nav-links{
+display:flex;
+gap:45px;
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+}
+.top-bar a{
+color:white;
+text-decoration:none;
+font-size:16px;
+letter-spacing:1px;
+white-space:nowrap;
+}
+.top-bar a:hover,
+.top-bar a.active{
+color:#00c6ff;
+}
+.right-buttons{
+display:flex;
+gap:15px;
+align-items:center;
+}
+.support-btn{
+padding:12px 34px;
+font-size:15px;
+border:2px solid #00c6ff;
+background:transparent;
+color:white;
+border-radius:40px;
+font-weight:bold;
+letter-spacing:1.5px;
+text-transform:uppercase;
+transition: all 0.3s ease;
+white-space:nowrap;
+}
+.hamburger{
+display:none;
+font-size:28px;
+color:white;
+cursor:pointer;
+z-index:101;
+}
+.mobile-menu{
+display:none;
+position:fixed;
+top:80px;
+left:0;
+width:100%;
+background:rgba(0,0,0,0.98);
+backdrop-filter:blur(12px);
+flex-direction:column;
+padding:20px 0;
+box-shadow:0 10px 30px rgba(0,0,0,0.7);
+z-index:99;
+}
+.mobile-menu.active{
+display:flex;
+}
+.mobile-menu a{
+color:white;
+text-decoration:none;
+font-size:18px;
+padding:16px 40px;
+}
+.mobile-menu a:hover,
+.mobile-menu a.active{
+background:rgba(0,198,255,0.2);
+color:#00c6ff;
+}
+.main-wrapper,
+.main-wrapper * {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+}
+.main-wrapper{
+max-width:1000px;
+margin:120px auto 100px auto;
+padding:20px 30px;
+line-height:1.75;
+font-size:18px;
+}
+.main-wrapper h1{
+font-size:42px;
+text-align:center;
+margin-bottom:30px;
+}
+.main-wrapper h2{
+font-size:28px;
+margin:50px 0 20px 0;
+color:#00c6ff;
+}
+.main-wrapper p, .main-wrapper ul{
+margin-bottom:20px;
+}
+.main-wrapper ul{
+padding-left:25px;
+}
+.main-wrapper a{
+color:#00c6ff;
+text-decoration:underline;
+}
+.site-footer {
+    text-align: center;
+    padding: 40px 20px 90px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+}
+.footer-icons{
+position:fixed;
+bottom:25px;
+right:25px;
+display:flex;
+gap:12px;
+z-index:10;
+}
+.footer-icons a{
+width:24px;
+height:24px;
+display:block;
+}
+.footer-icons img{
+width:100%;
+height:100%;
+object-fit:contain;
+opacity:0.7;
+transition:0.3s;
+}
+.footer-icons a:hover img{
+opacity:1;
+transform:scale(1.15);
+}
+@media(max-width: 900px){
+.main-wrapper{padding:20px 20px;}
+}
+@media(max-width: 768px){
+.top-bar{
+    height:70px;
+    padding:0 20px;
+}
+.nav-links, .right-buttons{
+    display:none;
+}
+.hamburger{
+    display:block;
+}
+.main-wrapper{
+    margin:100px auto 80px auto;
+    padding:20px 18px;
+}
+.main-wrapper h1{
+    font-size:34px;
+}
+.main-wrapper h2{
+    font-size:24px;
+    margin:40px 0 18px 0;
+}
+}
+@media(max-width: 480px){
+.main-wrapper{
+    padding:15px 15px;
+    margin:90px auto 70px auto;
+}
+.main-wrapper h1{
+    font-size:30px;
+}
+.main-wrapper h2{
+    font-size:22px;
+}
+.main-wrapper p, .main-wrapper ul{
+    font-size:17px;
+}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+    <div class="logo-box">
+        <img src="grimlogo.png" alt="grim logo">
+    </div>
+ 
+    <div class="nav-links">
+        <a href="index">Home</a>
+        <a href="download">Download</a>
+    </div>
+    <div class="right-buttons">
+        <a href="https://t.me/grimvpnbot" target="_blank" class="support-btn">Подключить</a>
+        <a href="https://t.me/GrimVpnSupportBot" target="_blank" class="support-btn">Support</a>
+    </div>
+    <div class="hamburger" id="hamburger">☰</div>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index">Home</a>
+    <a href="download">Download</a>
+    <a href="https://t.me/grimvpnbot" target="_blank">Подключить</a>
+    <a href="https://t.me/GrimVpnSupportBot" target="_blank">Support</a>
+</div>
+<div class="main-wrapper">
+    <h1>Политика конфиденциальности</h1>
+    <p style="text-align:center;opacity:0.7;">Дата вступления в силу: 26 марта 2026 г.</p>
+    <h2></h2>
+    <p>Grim VPN уважает вашу конфиденциальность. Наша политика: мы не собираем данные о ваших действиях в сети и поэтому не можем никому их передать.</p>
+    <h2>1. Политика «No-Logs»</h2>
+    <p>Мы <strong>не ведём и не храним</strong> никаких логов активности:</p>
+    <ul>
+        <li>IP-адреса пользователей</li>
+        <li>Время и продолжительность подключения</li>
+        <li>Посещаемые сайты и трафик</li>
+        <li>Запросы DNS</li>
+    </ul>
+    <h2>2. Какие данные мы собираем</h2>
+    <p>Мы собираем только минимально необходимые данные:</p>
+    <ul>
+        <li>Email-адрес и ID пользователя (для авторизации,создания аккаунта и восстановления)</li>
+        <li>Информация о платеже (обрабатывается платежными системами, мы не храним номера карт)</li>
+    </ul>
+    <h2>3. Как мы используем данные</h2>
+    <p>Данные используются исключительно для:</p>
+    <ul>
+        <li>Предоставления и поддержки сервиса</li>
+        <li>Обработки платежей и возвратов</li>
+        <li>Ответов на ваши обращения в поддержку</li>
+    </ul>
+    <h2>4. Запросы правоохранительных органов</h2>
+    <p>Мы уважаем законы тех юрисдикций, в которых работаем. Однако, поскольку мы не храним логи активности и IP-адреса пользователей, мы физически не можем предоставить информацию, связывающую конкретного пользователя с определенной активностью в сети, даже при получении официального юридического запроса. Мы не можем раскрыть то, чем не владеем.</p>
+    <h2>5. По вопросам</h2>
+    <p><strong>Support:</strong> <a href="https://t.me/GrimVpnSupportBot" target="_blank">@GrimVpnSupportBot</a></p>
+</div>
+<div class="site-footer">
+    © 2026 Grim VPN. Все права защищены.
+</div>
+<div class="footer-icons">
+    <a href="https://t.me/grimvpn" target="_blank"><img src="icons/telegram.svg" alt="Telegram"></a>
+</div>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    hamburger.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+document.addEventListener('click', (event) => {
+    if (mobileMenu.classList.contains('active') &&
+        !mobileMenu.contains(event.target) && 
+        !hamburger.contains(event.target)) {
+        
+        mobileMenu.classList.remove('active');
+        hamburger.textContent = '☰';
+    }
+});
+</script>
+</body>
+</html>

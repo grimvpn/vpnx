@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grim VPN - Home</title>
+<link rel="icon" href="grimlogo.png" type="image/png">
+<style>
+@font-face {
+    font-family: 'Srift';
+    src: url('./Srift.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+html,body{
+height:100%;
+font-family:'Srift', Arial, sans-serif;
+color:white;
+overflow-x:hidden;
+user-select:none;
+}
+html, body {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-y: scroll !important;
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important;
+}
+body{
+background:url("fon.png") center/cover no-repeat fixed;
+}
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+z-index:-1;
+}
+.top-bar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:80px;
+background:rgba(0,0,0,0.95);
+backdrop-filter:blur(8px);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 40px;
+z-index:100;
+}
+.logo-box img{
+width:64px;
+height:64px;
+object-fit:contain;
+}
+.nav-links{
+display:flex;
+gap:45px;
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+}
+.top-bar a{
+color:white;
+text-decoration:none;
+font-size:16px;
+letter-spacing:1px;
+white-space:nowrap;
+}
+.top-bar a:hover,
+.top-bar a.active{
+color:#00c6ff;
+}
+.right-buttons{
+display:flex;
+gap:15px;
+align-items:center;
+}
+.connect-btn,
+.support-btn{
+padding:12px 34px;
+font-size:15px;
+border:2px solid #00c6ff;
+background:transparent;
+color:white;
+border-radius:40px;
+font-weight:bold;
+letter-spacing:1.5px;
+text-transform:uppercase;
+transition: all 0.3s ease;
+white-space:nowrap;
+}
+.hamburger{
+display:none;
+font-size:28px;
+color:white;
+cursor:pointer;
+z-index:101;
+}
+.mobile-menu{
+display:none;
+position:fixed;
+top:80px;
+left:0;
+width:100%;
+background:rgba(0,0,0,0.98);
+backdrop-filter:blur(12px);
+flex-direction:column;
+padding:20px 0;
+box-shadow:0 10px 30px rgba(0,0,0,0.7);
+z-index:99;
+}
+.mobile-menu.active{
+display:flex;
+}
+.mobile-menu a{
+color:white;
+text-decoration:none;
+font-size:18px;
+padding:16px 40px;
+}
+.mobile-menu a:hover,
+.mobile-menu a.active{
+background:rgba(0,198,255,0.2);
+color:#00c6ff;
+}
+.main-wrapper{
+max-width:1200px;
+margin:120px auto 60px auto;
+padding:20px;
+}
+.top-section{
+display:flex;
+justify-content:space-between;
+align-items:stretch;
+gap:60px;
+margin-bottom:80px;
+}
+.left-description{
+flex:1;
+font-size:24px;
+line-height:1.7;
+text-shadow:0 0 20px rgba(0,0,0,0.8);
+display:flex;
+align-items:center;
+}
+.right-panel{
+flex:0 0 40%;
+background:rgba(0,0,0,0.85);
+border-radius:25px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:60px 30px;
+backdrop-filter:blur(20px);
+}
+.right-panel h2{
+font-size:34px;
+margin-bottom:40px;
+}
+.connect-btn{
+padding:16px 32px;
+font-size:17px;
+border:none;
+border-radius:40px;
+cursor:pointer;
+background:linear-gradient(45deg,#00c6ff,#0072ff);
+color:white;
+font-weight:bold;
+transition:0.3s;
+width:100%;
+max-width:100%;
+box-sizing:border-box;
+}
+.connect-btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 30px rgba(0,114,255,0.9);
+}
+.blur-strip{
+margin-top:80px;
+padding:40px 20px;
+background:rgba(0,0,0,0.65);
+backdrop-filter:blur(18px);
+border-radius:20px;
+}
+.features{
+display:flex;
+justify-content:space-around;
+text-align:center;
+flex-wrap:wrap;
+gap:40px;
+}
+.feature img{
+width:64px;
+height:64px;
+object-fit:contain;
+margin-bottom:12px;
+}
+.feature{
+max-width:220px;
+font-size:18px;
+}
+.section-title{
+text-align:center;
+font-size:32px;
+margin-top:90px;
+margin-bottom:40px;
+}
+.platforms{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:55px;
+text-align:center;
+}
+.platform img{
+width:60px;
+height:60px;
+object-fit:contain;
+margin-bottom:10px;
+}
+.platform div{
+font-size:16px;
+opacity:0.9;
+}
+.tariffs{
+text-align:center;
+margin-top:10px;
+}
+.tariffs div{
+font-size:22px;
+margin:18px 0;
+letter-spacing:1px;
+}
+.services{
+position:relative;
+overflow:hidden;
+margin:30px auto 0 auto;
+width:520px;
+max-width:92vw;
+padding:0 25px;
+mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+);
+-webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+);
+}
+.services-track{
+display:flex;
+gap:45px;
+align-items:center;
+animation:servicesScroll 25s linear infinite;
+width:max-content;
+}
+.services img{
+width:64px;
+height:64px;
+object-fit:contain;
+flex:0 0 auto;
+}
+.services img[src*="youtube"]{
+width:74px;
+}
+@keyframes servicesScroll{
+0%{ transform:translateX(0); }
+100%{ transform:translateX(-50%); }
+}
+.countries{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+margin-top:30px;
+}
+.countries img{
+width:64px;
+height:44px;
+object-fit:cover;
+border-radius:6px;
+}
+.footer-icons{
+position:fixed;
+bottom:25px;
+right:25px;
+display:flex;
+gap:12px;
+z-index:10;
+}
+.footer-icons a{
+width:24px;
+height:24px;
+display:block;
+}
+.footer-icons img{
+width:100%;
+height:100%;
+object-fit:contain;
+opacity:0.7;
+transition:0.3s;
+}
+.footer-icons a:hover img{
+opacity:1;
+transform:scale(1.15);
+}
+
+.site-footer {
+    text-align: center;
+    padding: 40px 20px 100px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    margin-top: 80px;
+    line-height: 1.6;
+}
+.site-footer a {
+    color: #00c6ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+    margin-top: 12px;
+}
+.site-footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+@media(max-width: 768px){
+    .site-footer {
+        margin-top: 100px;
+        padding-bottom: 110px;
+    }
+}
+
+@media(max-width: 900px){
+.top-section{flex-direction:column; gap:40px;}
+.right-panel{width:100%; padding:50px 20px;}
+.left-description{font-size:21px;}
+}
+@media(max-width: 768px){
+.top-bar{
+height:70px;
+padding:0 20px;
+}
+.nav-links,
+.right-buttons{
+display:none;
+}
+.hamburger{
+display:block;
+}
+.services{
+width:100%;
+max-width:none;
+padding:0 25px;
+}
+.connect-btn{
+padding:14px 24px !important;
+font-size:16px !important;
+}
+}
+@media(max-width: 480px){
+.top-bar{
+padding:0 15px;
+}
+.hamburger{
+font-size:26px;
+}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+    <div class="logo-box">
+        <img src="grimlogo.png" alt="grim logo">
+    </div>
+ 
+    <div class="nav-links">
+        <a href="#" class="active">Home</a>
+        <a href="download">Download</a>
+    </div>
+    <div class="right-buttons">
+        <a href="https://t.me/grimvpnbot" target="_blank" class="support-btn">Подключить</a>
+        <a href="https://t.me/GrimVpnSupportBot" target="_blank" class="support-btn">Support</a>
+    </div>
+    <div class="hamburger" id="hamburger">☰</div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#" class="active">Home</a>
+    <a href="download">Download</a>
+    <a href="https://t.me/grimvpnbot" target="_blank">Подключить</a>
+    <a href="https://t.me/GrimVpnSupportBot" target="_blank">Support</a>
+</div>
+    
+<div class="main-wrapper">
+<div class="top-section">
+<div class="left-description">
+Grim VPN — инструмент конфиденциальности и безопасности.
+С ним вы сможете использовать интернет с высокой скоростью и удобством.
+Подключайтесь сейчас и исследуйте интернет по-новому.
+</div>
+<div class="right-panel">
+<h2>Grim VPN</h2>
+<a href="https://t.me/grimvpnbot" target="_blank">
+<button class="connect-btn">Попробовать за 15 рублей</button>
+</a>
+</div>
+</div>
+<div class="blur-strip">
+<div class="features">
+<div class="feature">
+<img src="security.webp">
+<div>Защита данных</div>
+</div>
+<div class="feature">
+<img src="speed.webp">
+<div>Высокая скорость</div>
+</div>
+<div class="feature">
+<img src="device.webp">
+<div>Подключай до 5 устройств одновременно</div>
+</div>
+</div>
+</div>
+<h2 class="section-title">Кроссплатформенность</h2>
+<div class="platforms">
+<div class="platform"><img src="platform/android.webp"><div>Android</div></div>
+<div class="platform"><img src="platform/linux.webp"><div>Linux</div></div>
+<div class="platform"><img src="platform/macos.webp"><div>Mac OS</div></div>
+<div class="platform"><img src="platform/windows.webp"><div>Windows</div></div>
+<div class="platform"><img src="platform/ios.webp"><div>IOS</div></div>
+<div class="platform"><img src="platform/androidtv.webp"><div>Android TV</div></div>
+<div class="platform"><img src="platform/appletv.webp"><div>Apple TV</div></div>
+</div>
+<div class="blur-strip">
+<h2 style="text-align:center;margin-bottom:25px;">Тарифы</h2>
+<div class="tariffs">
+<div>1 месяц — 300 руб</div>
+<div>3 месяца — 900 руб</div>
+<div>6 месяцев — 1800 руб</div>
+</div>
+</div>
+<div class="blur-strip">
+<h2 style="text-align:center;margin-bottom:25px;">Получите доступ к различным сервисам</h2>
+<div class="services">
+<div class="services-track">
+<img src="icons/twitch.webp">
+<img src="icons/snapchat.webp">
+<img src="icons/youtube.webp">
+<img src="icons/whatsapp.webp">
+<img src="icons/telegram.webp">
+<img src="icons/modrinth.webp">
+<img src="icons/steam.webp">
+<img src="icons/netflix.webp">
+<img src="icons/chatgpt.webp">
+<img src="icons/grok.webp">
+<img src="icons/microsoft.webp">
+<img src="icons/supercell.webp">
+<img src="icons/xbox.webp">
+<img src="icons/spotify.webp">
+<img src="icons/tiktok.webp">
+<img src="icons/twitch.webp">
+<img src="icons/snapchat.webp">
+<img src="icons/youtube.webp">
+<img src="icons/whatsapp.webp">
+<img src="icons/telegram.webp">
+<img src="icons/modrinth.webp">
+<img src="icons/steam.webp">
+<img src="icons/netflix.webp">
+<img src="icons/chatgpt.webp">
+<img src="icons/grok.webp">
+<img src="icons/microsoft.webp">
+<img src="icons/supercell.webp">
+<img src="icons/xbox.webp">
+<img src="icons/spotify.webp">
+<img src="icons/tiktok.webp">
+</div>
+</div>
+</div>
+<h2 class="section-title">Разные страны</h2>
+<div class="countries">
+<img src="flags/nl.svg">
+<img src="flags/fi.svg">
+<img src="flags/de.svg">
+<img src="flags/ae.svg">
+<img src="flags/ca.svg">
+<img src="flags/ch.svg">
+<img src="flags/ua.svg">
+<img src="flags/jp.svg">
+<img src="flags/it.svg">
+<img src="flags/gb.svg">
+</div>
+</div>
+
+<div class="site-footer">
+    © 2026 Grim VPN. Все права защищены.
+    <a href="privacy" target="_blank">Политика конфиденциальности</a>
+    <a href="useragreement" target="_blank">Пользовательское соглашение</a>
+</div>
+
+<div class="footer-icons">
+    <a href="https://t.me/grimvpn" target="_blank"><img src="icons/telegram.svg" alt="Telegram"></a>
+</div>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', (e) => {
+    e.stopImmediatePropagation();
+    mobileMenu.classList.toggle('active');
+    hamburger.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+document.addEventListener('click', (e) => {
+    if (mobileMenu.classList.contains('active') && 
+        !mobileMenu.contains(e.target) && 
+        !hamburger.contains(e.target)) {
+        
+        mobileMenu.classList.remove('active');
+        hamburger.textContent = '☰';
+    }
+});
+
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        hamburger.textContent = '☰';
+    });
+});
+
+document.addEventListener('contextmenu', function(e){
+  if(e.target.tagName === 'IMG'){
+    e.preventDefault();
+  }
+});
+document.querySelectorAll('img').forEach(img => {
+  img.setAttribute('draggable','false');
+  img.addEventListener('dragstart', e => e.preventDefault());
+});
+document.addEventListener('copy', function(e){
+  e.preventDefault();
+});
+document.addEventListener('selectstart', function(e){
+  e.preventDefault();
+});
+</script>
+</body>
+</html>
